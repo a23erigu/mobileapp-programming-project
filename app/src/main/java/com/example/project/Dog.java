@@ -24,5 +24,11 @@ public class Dog {
         this.size = size;
     }
 
-
+    @Override
+    public String toString() {
+        return "Dog{" +
+                "name='" + name + '\'' +
+                ", size=" + size +
+                '}';
+    }
 }
