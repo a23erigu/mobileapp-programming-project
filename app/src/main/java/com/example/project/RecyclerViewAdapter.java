@@ -1,4 +1,4 @@
-package com.example.networking;
+package com.example.project;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,14 +12,15 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project.Dog;
 import com.example.project.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private List<Mountain> items;
+    private List<Dog> items;
     private LayoutInflater layoutInflater;
 
-    RecyclerViewAdapter(Context context, List<Mountain> items) {
+    RecyclerViewAdapter(Context context, List<Dog> items) {
         this.layoutInflater = LayoutInflater.from(context);
         this.items = items;
     }
@@ -49,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    public void updateAdapter(ArrayList<Mountain> newItems){
+    public void updateAdapter(ArrayList<Dog> newItems){
         items.addAll(newItems);
     }
 
