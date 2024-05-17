@@ -7,10 +7,14 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
     Button switchActivityButton;
+
+    private RecyclerView recView;
+    private RecyclerViewAdapter recViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
