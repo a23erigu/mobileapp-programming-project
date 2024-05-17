@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 public class MainActivity extends AppCompatActivity {
 
     Button switchActivityButton;
@@ -31,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Dogs = new ArrayList<>(Arrays.asList(
-                new Dog("Golden retriver"),
                 new Dog("Siberien husky"),
+                new Dog("Golden retriver"),
                 new Dog("Border coly")
         ));
 
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
     }
 
