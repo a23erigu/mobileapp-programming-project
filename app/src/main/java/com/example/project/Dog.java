@@ -4,9 +4,9 @@ public class Dog {
 
     String name;
     String color;
-    String rasgrupp;
+    String racialGroup;
     int size;
-    int cutenes;
+    int cuteness;
     String picture;
 
     public Dog (String name){
@@ -19,14 +19,14 @@ public class Dog {
     public String getColor() {
         return color;
     }
-    public String getRasgrupp() {
-        return rasgrupp;
+    public String getRacialGroup() {
+        return racialGroup;
     }
     public int getSize() {
         return size;
     }
-    public int getCutenes() {
-        return cutenes;
+    public int getCuteness() {
+        return cuteness;
     }
     public String getPicture() {
         return picture;
@@ -44,9 +44,9 @@ public class Dog {
         return "Dog{" +
                 "name='" + name + '\'' +
                 ", color='" + color + '\'' +
-                ", rasgrupp='" + rasgrupp + '\'' +
+                ", racial group='" + racialGroup + '\'' +
                 ", size=" + size +
-                ", cutenes=" + cutenes +
+                ", cuteness=" + cuteness +
                 ", picture='" + picture + '\'' +
                 '}';
     }
