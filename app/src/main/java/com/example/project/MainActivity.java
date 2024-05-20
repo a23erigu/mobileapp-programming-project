@@ -11,11 +11,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener{
+
+    private final String JSON_URL = "https://mobprog.webug.se/json-api?login=a23erigu";
 
     Button switchActivityButton;
 
@@ -23,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recView;
     private RecyclerViewAdapter recViewAdapter;
+
+    private Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Dogs = new ArrayList<>(Arrays.asList(
-                new Dog("Siberien husky"),
                 new Dog("Golden retriver"),
+                new Dog("Siberien husky"),
                 new Dog("Border coly")
         ));
 
@@ -42,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         recView = findViewById(R.id.recycler_view);
         recView.setLayoutManager(new LinearLayoutManager(this));
         recView.setAdapter(recViewAdapter);
+
+        new JsonTask(this).execute(JSON_URL);
 
         switchActivityButton = findViewById(R.id.switchActivityButton);
 
@@ -53,7 +63,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
+    @Override
+    public void onPostExecute(String json) {
+        Log.d("Tomte", json);
+        Type type = new TypeToken<ArrayList<Dog>>() {}.getType();
+        ArrayList<Dog> listOfDogs = gson.fromJson(json, type);
+
+        recViewAdapter.updateAdapter(listOfDogs);
+        recViewAdapter.notifyDataSetChanged();
+
+    }
 }
