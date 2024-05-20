@@ -34,8 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Log.d("Tomte", items.get(position).getName());
-        holder.title.setText(items.get(position).getName());
+        holder.name.setText(items.get(position).getName());
     }
 
     @Override
@@ -44,11 +43,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title;
+        TextView name;
 
         ViewHolder(View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.title);
+            name = itemView.findViewById(R.id.name);
         }
     }
 
