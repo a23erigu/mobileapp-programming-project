@@ -39,18 +39,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Dogs = new ArrayList<>(Arrays.asList(
-                new Dog("Golden retriver","Cool"),
-                new Dog("Siberien husky","PolarHundar"),
-                new Dog("Border coly","Snabb")
-        ));
-
-        recViewAdapter = new RecyclerViewAdapter(this, Dogs);
-
-        recView = findViewById(R.id.recycler_view);
-        recView.setLayoutManager(new LinearLayoutManager(this));
-        recView.setAdapter(recViewAdapter);
-
         new JsonTask(this).execute(JSON_URL);
 
         switchActivityButton = findViewById(R.id.switchActivityButton);
@@ -71,7 +59,12 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Type type = new TypeToken<ArrayList<Dog>>() {}.getType();
         ArrayList<Dog> listOfDogs = gson.fromJson(json, type);
 
-        recViewAdapter.updateAdapter(listOfDogs);
+        recViewAdapter = new RecyclerViewAdapter(this, listOfDogs);
+
+        recView = findViewById(R.id.recycler_view);
+        recView.setLayoutManager(new LinearLayoutManager(this));
+        recView.setAdapter(recViewAdapter);
+
         recViewAdapter.notifyDataSetChanged();
 
     }
