@@ -35,6 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.name.setText(items.get(position).getName());
+        holder.race.setText(items.get(position).getRacialGroup());
     }
 
     @Override
@@ -44,10 +45,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
+        TextView race;
 
         ViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
+            race = itemView.findViewById(R.id.race);
         }
     }
 

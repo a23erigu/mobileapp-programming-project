@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         setSupportActionBar(toolbar);
 
         Dogs = new ArrayList<>(Arrays.asList(
-                new Dog("Golden retriver"),
-                new Dog("Siberien husky"),
-                new Dog("Border coly")
+                new Dog("Golden retriver","Cool"),
+                new Dog("Siberien husky","PolarHundar"),
+                new Dog("Border coly","Snabb")
         ));
 
         recViewAdapter = new RecyclerViewAdapter(this, Dogs);
