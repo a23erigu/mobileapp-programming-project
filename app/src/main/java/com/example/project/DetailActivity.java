@@ -1,16 +1,23 @@
 package com.example.project;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 
 
 public class DetailActivity extends AppCompatActivity {
 
     TextView nameTextView;
     TextView raceTextView;
-    TextView cutnessTextView;
+    TextView cutenessTextView;
+    ImageView dogImageView;
+    TextView colorTextView;
+    TextView originTextView;
+    TextView sizeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +26,11 @@ public class DetailActivity extends AppCompatActivity {
 
         nameTextView = findViewById(R.id.nameTextView);
         raceTextView = findViewById(R.id.raceTextView);
-        cutnessTextView = findViewById(R.id.cutnessTextView);
+        cutenessTextView = findViewById(R.id.cutenessTextView);
+        dogImageView = findViewById(R.id.dogImageView);
+        colorTextView = findViewById(R.id.colorTextView);
+        originTextView = findViewById(R.id.originTextView);
+        sizeTextView = findViewById(R.id.sizeTextView);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -27,13 +38,19 @@ public class DetailActivity extends AppCompatActivity {
             String origin = extras.getString("origin");
             String color = extras.getString("color");
             String racialGroup = extras.getString("racialGroup");
-            String size = extras.getString("size");
-            String cuteness = extras.getString("cuteness");
+            int size = extras.getInt("size");
+            int cuteness = extras.getInt("cuteness");
             String picture = extras.getString("picture");
-            // Do something with the name and number
+
             nameTextView.setText(name);
             raceTextView.setText(racialGroup);
-            cutnessTextView.setText(cuteness + "/10");
+            Glide.with(this).load(picture).into(dogImageView);
+            cutenessTextView.setText(cuteness + "/10");
+            colorTextView.setText(color);
+            originTextView.setText(origin);
+            sizeTextView.setText("The dogs size is " + size);
+
+
         }
 
     }
