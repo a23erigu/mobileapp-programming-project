@@ -8,13 +8,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DetailActivity extends AppCompatActivity {
 
-    TextView nameView;
+    TextView nameTextView;
+    TextView raceTextView;
+    TextView cutnessTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        nameView = findViewById(R.id.nameView);
+        nameTextView = findViewById(R.id.nameTextView);
+        raceTextView = findViewById(R.id.raceTextView);
+        cutnessTextView = findViewById(R.id.cutnessTextView);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -26,7 +31,9 @@ public class DetailActivity extends AppCompatActivity {
             String cuteness = extras.getString("cuteness");
             String picture = extras.getString("picture");
             // Do something with the name and number
-            nameView.setText(name);
+            nameTextView.setText(name);
+            raceTextView.setText(racialGroup);
+            cutnessTextView.setText(cuteness + "/10");
         }
 
     }
