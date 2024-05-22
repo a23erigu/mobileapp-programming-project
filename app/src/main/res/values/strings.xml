@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Project</string>
     <string name="aboutButtonText">About</string>
+    <string name="sortAZButtonText">Sort A-Z</string>
+    <string name="sortZAButtonText">Sort Z-A</string>
     <string name="aboutText">This app was made for dog owners/lovers and exist to show different dog breeds</string>
 </resources>

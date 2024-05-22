@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=a23erigu";
 
     Button switchActivityButton;
+    Button sortAZButton;
+    Button sortZAButton;
 
     private RecyclerView recView;
     private RecyclerViewAdapter recViewAdapter;
@@ -40,12 +42,31 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         new JsonTask(this).execute(JSON_URL);
 
         switchActivityButton = findViewById(R.id.switchActivityButton);
+        sortAZButton = findViewById(R.id.sortAZButton);
+        sortZAButton = findViewById(R.id.sortZAButton);
+
 
         switchActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AboutActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        sortAZButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recViewAdapter.sortAZ();
+                recViewAdapter.notifyDataSetChanged();
+            }
+        });
+
+        sortZAButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recViewAdapter.sortZA();
+                recViewAdapter.notifyDataSetChanged();
             }
         });
 

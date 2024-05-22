@@ -41,7 +41,29 @@
         android:text="@string/aboutButtonText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sortZAButton"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
+
+    <Button
+        android:id="@+id/sortAZButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:text="@string/sortAZButtonText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/sortZAButton"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
+
+    <Button
+        android:id="@+id/sortZAButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:text="@string/sortZAButtonText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/switchActivityButton"
+        app:layout_constraintStart_toEndOf="@id/sortAZButton"
         app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
