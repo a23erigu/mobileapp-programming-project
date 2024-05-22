@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     Button switchActivityButton;
 
-    private ArrayList<Dog> Dogs;
-
     private RecyclerView recView;
     private RecyclerViewAdapter recViewAdapter;
 
@@ -59,7 +57,20 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Type type = new TypeToken<ArrayList<Dog>>() {}.getType();
         ArrayList<Dog> listOfDogs = gson.fromJson(json, type);
 
-        recViewAdapter = new RecyclerViewAdapter(this, listOfDogs);
+        recViewAdapter = new RecyclerViewAdapter(this, listOfDogs, new RecyclerViewAdapter.OnClickListener(){
+            @Override
+            public void onClick(Dog dog) {
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                intent.putExtra("name", dog.getName());
+                intent.putExtra("origin", dog.getOrigin());
+                intent.putExtra("color", dog.getColor());
+                intent.putExtra("racialGroup", dog.getRacialGroup());
+                intent.putExtra("size", dog.getSize());
+                intent.putExtra("cuteness", dog.getCuteness());
+                intent.putExtra("picture", dog.getPicture());
+                startActivity(intent);
+            }
+        });
 
         recView = findViewById(R.id.recycler_view);
         recView.setLayoutManager(new LinearLayoutManager(this));
