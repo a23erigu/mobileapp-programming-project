@@ -1,6 +1,7 @@
 package com.example.project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,12 +24,17 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=a23erigu";
 
-    Button switchActivityButton;
-    Button sortAZButton;
-    Button sortZAButton;
+    private int test;
+
+    private Button switchActivityButton;
+    private Button sortAZButton;
+    private Button sortZAButton;
 
     private RecyclerView recView;
     private RecyclerViewAdapter recViewAdapter;
+
+    private SharedPreferences myPreferenceRef;
+    private SharedPreferences.Editor myPreferenceEditor;
 
     private Gson gson = new Gson();
 
@@ -38,6 +44,9 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        myPreferenceRef = getSharedPreferences("MySortingPreference", MODE_PRIVATE);
+        myPreferenceEditor = myPreferenceRef.edit();
 
         new JsonTask(this).execute(JSON_URL);
 
@@ -59,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             public void onClick(View view) {
                 recViewAdapter.sortAZ();
                 recViewAdapter.notifyDataSetChanged();
+                myPreferenceEditor.putInt("SortingPreference", 1);
+                myPreferenceEditor.apply();
             }
         });
 
@@ -67,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             public void onClick(View view) {
                 recViewAdapter.sortZA();
                 recViewAdapter.notifyDataSetChanged();
+                myPreferenceEditor.putInt("SortingPreference", 2);
+                myPreferenceEditor.apply();
             }
         });
 
@@ -101,4 +114,23 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         recViewAdapter.notifyDataSetChanged();
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //Log.d("VADARDU", "C " + recViewAdapter.getItemCount());
+
+        test = myPreferenceRef.getInt("SortingPreference", 0);
+        Log.d("VADARDU", "H "+ test);
+
+        if (test == 1){
+            //.sortAZ();
+            //recViewAdapter.notifyDataSetChanged();
+        } else if (test == 2) {
+            //recViewAdapter.sortZA();
+            //recViewAdapter.notifyDataSetChanged();
+        }
+    }
+
 }
