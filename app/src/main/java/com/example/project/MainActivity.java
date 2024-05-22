@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=a23erigu";
 
-    private int test;
+    private int whichSort = 0;
 
     private Button switchActivityButton;
     private Button sortAZButton;
@@ -111,6 +111,12 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         recView.setLayoutManager(new LinearLayoutManager(this));
         recView.setAdapter(recViewAdapter);
 
+        if (whichSort == 1){
+            recViewAdapter.sortAZ();
+        } else if (whichSort == 2) {
+            recViewAdapter.sortZA();
+        }
+
         recViewAdapter.notifyDataSetChanged();
 
     }
@@ -119,18 +125,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     protected void onResume() {
         super.onResume();
 
-        //Log.d("VADARDU", "C " + recViewAdapter.getItemCount());
-
-        test = myPreferenceRef.getInt("SortingPreference", 0);
-        Log.d("VADARDU", "H "+ test);
-
-        if (test == 1){
-            //.sortAZ();
-            //recViewAdapter.notifyDataSetChanged();
-        } else if (test == 2) {
-            //recViewAdapter.sortZA();
-            //recViewAdapter.notifyDataSetChanged();
-        }
+        whichSort = myPreferenceRef.getInt("SortingPreference", 0);
     }
 
 }
