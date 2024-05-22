@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,6 +62,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public interface OnClickListener {
         void onClick(Dog dog);
+    }
+
+    public void sortAZ(){
+        Collections.sort(items, new Comparator<Dog>() {
+            @Override
+            public int compare(Dog dog1, Dog dog2) {
+                return dog1.getName().compareTo(dog2.getName());
+            }
+        });
+    }
+
+    public void sortZA(){
+        Collections.sort(items, new Comparator<Dog>() {
+            @Override
+            public int compare(Dog dog1, Dog dog2) {
+                return dog2.getName().compareTo(dog1.getName());
+            }
+        });
     }
 
 }
