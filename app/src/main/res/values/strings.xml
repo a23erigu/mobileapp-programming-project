@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Project</string>
     <string name="aboutButtonText">About</string>
-    <string name="aboutText">This app was made for dog owners/lovers and exist to show different dog races</string>
+    <string name="aboutText">This app was made for dog owners/lovers and exist to show different dog breeds</string>
 </resources>
