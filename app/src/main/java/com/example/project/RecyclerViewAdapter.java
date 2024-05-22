@@ -8,22 +8,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.project.Dog;
-import com.example.project.R;
-
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private List<Dog> items;
+    private ArrayList<Dog> items;
     private LayoutInflater layoutInflater;
+    private OnClickListener onClickListener;
 
-    RecyclerViewAdapter(Context context, List<Dog> items) {
+    public RecyclerViewAdapter(Context context, ArrayList<Dog> items, OnClickListener onClickListener) {
         this.layoutInflater = LayoutInflater.from(context);
         this.items = items;
+        this.onClickListener = onClickListener;
     }
 
     @Override
@@ -43,19 +41,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return items.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView name;
         TextView race;
 
         ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             name = itemView.findViewById(R.id.name);
             race = itemView.findViewById(R.id.race);
         }
+
+        @Override
+        public void onClick(View view) {
+            onClickListener.onClick(items.get(getAdapterPosition()));
+        }
     }
 
-    public void updateAdapter(ArrayList<Dog> newItems){
-        items.addAll(newItems);
+    public interface OnClickListener {
+        void onClick(Dog dog);
     }
 
 }
