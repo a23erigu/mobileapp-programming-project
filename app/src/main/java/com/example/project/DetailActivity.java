@@ -1,6 +1,7 @@
 package com.example.project;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,10 +46,10 @@ public class DetailActivity extends AppCompatActivity {
             nameTextView.setText(name);
             raceTextView.setText(racialGroup);
             Glide.with(this).load(picture).into(dogImageView);
-            cutenessTextView.setText(cuteness + "/10");
-            colorTextView.setText(color);
-            originTextView.setText(origin);
-            sizeTextView.setText("The dogs size is " + size);
+            cutenessTextView.setText(name + "s cuteness ranking is " + cuteness + "/10");
+            colorTextView.setText("The colors that " + name + "s can come in is " + color);
+            originTextView.setText(name + "s comes from " + origin + " originally");
+            sizeTextView.setText("The max size that " + name + "s can get to is " + size + " cm");
 
 
         }
