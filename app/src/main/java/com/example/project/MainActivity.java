@@ -87,10 +87,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     @Override
     public void onPostExecute(String json) {
-        Log.d("Tomte", json);
         Type type = new TypeToken<ArrayList<Dog>>() {}.getType();
         ArrayList<Dog> listOfDogs = gson.fromJson(json, type);
-        Log.d("mysigt", listOfDogs.toString());
 
         recViewAdapter = new RecyclerViewAdapter(this, listOfDogs, new RecyclerViewAdapter.OnClickListener(){
             @Override

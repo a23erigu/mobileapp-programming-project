@@ -17,9 +17,14 @@ public class Dog {
     @SerializedName("auxdata")
     String picture;
 
-    public Dog (String name, String racialGroup){
+    public Dog (String name, String origin, String color, String racialGroup, int size, int cuteness, String picture){
         this.name = name;
+        this.origin = origin;
+        this.color = color;
         this.racialGroup = racialGroup;
+        this.size = size;
+        this.cuteness = cuteness;
+        this.picture = picture;
     }
 
     public String getName() {
